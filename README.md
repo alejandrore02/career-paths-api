@@ -11,6 +11,78 @@ API backend en **Python + FastAPI** para gestionar evaluaciones 360°, evaluacio
 - **Resiliente**: Manejo robusto de errores y circuit breakers para servicios externos
 - **Observable**: Logging estructurado, métricas y health checks
 
+
+## Diagrama de Arquitectura
+
+```mermaid
+graph TB
+
+    %% ==== Presentation Layer ====
+    subgraph "Presentation Layer"
+        API[FastAPI Routers]
+    end
+
+    %% ==== Application Layer ====
+    subgraph "Application Layer"
+        CORE_SRV[Core Services: Users, Skills, Roles, Evaluations, Cycles]
+        AI_SRV[AI Services: SkillsAssessment, CareerPaths]
+    end
+
+    %% ==== Domain Layer ====
+    subgraph "Domain Layer"
+        EVAL_DOM[Evaluation Logic and Rules]
+        CAREER_DOM[Career Path Logic]
+        VALUE_OBJ[Value Objects]
+    end
+
+    %% ==== Persistence Layer ====
+    subgraph "Persistence Layer"
+        UOW[UnitOfWork]
+        REPOS[Repositories]
+        MODELS[SQLAlchemy Models]
+        DB[(PostgreSQL)]
+    end
+
+    %% ==== Integrations Layer ====
+    subgraph "Integrations Layer"
+        AI_SKILLS[AISkillsClient]
+        AI_CAREER[AICareerClient]
+        RETRY[Retry Logic]
+        CB[Circuit Breaker]
+    end
+
+    %% Presentation -> Application
+    API --> CORE_SRV
+    API --> AI_SRV
+
+    %% Application -> Domain
+    CORE_SRV --> EVAL_DOM
+    AI_SRV --> EVAL_DOM
+    AI_SRV --> CAREER_DOM
+    CORE_SRV --> VALUE_OBJ
+    AI_SRV --> VALUE_OBJ
+
+    %% Application -> Persistence (todos los servicios con BD usan UoW)
+    CORE_SRV --> UOW
+    AI_SRV --> UOW
+
+    %% Persistence flow
+    UOW --> REPOS
+    REPOS --> MODELS
+    MODELS --> DB
+
+    %% Application -> Integrations (solo servicios IA)
+    AI_SRV --> AI_SKILLS
+    AI_SRV --> AI_CAREER
+
+    %% Retry y Circuit Breaker solo en Integrations
+    AI_SKILLS --> RETRY
+    AI_SKILLS --> CB
+    AI_CAREER --> RETRY
+    AI_CAREER --> CB
+
+```
+
 ## 📋 Requisitos
 
 - Python 3.12+
