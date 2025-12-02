@@ -32,6 +32,7 @@ cd career-paths-api
 
 ```bash
 # Inicia la aplicación con migraciones automáticas
+cp .env.example .env
 docker-compose up --build
 
 # Las migraciones se ejecutan automáticamente antes de iniciar el servidor
