@@ -199,7 +199,6 @@ python scripts/validate_config.py  # Validates .env configuration
 ## Key Files Reference
 
 - `docs/ARCHITECTURE.md` - Full architectural decisions and rationale
-- `docs/SERVICES.md` - Detailed service implementations and flows
 - `docs/flows.md` - Step-by-step business process flows
 - `docs/schema.md` - Database schema design
 - `Linea-pensamiento.md` - Original business requirements (Spanish)
@@ -261,8 +260,6 @@ pytest tests/unit/domain/test_evaluation_logic.py::test_is_cycle_complete_all_re
 pytest tests/ -m unit -v          # Solo unitarios
 pytest tests/ -m integration -v   # Solo integración
 ```
-
-Ver `docs/DOCKER_TESTING.md` para configuración completa de Docker testing.
 
 ### Testing Patterns (AAA)
 

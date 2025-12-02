@@ -82,7 +82,7 @@ cp .env.example .env
 
 - `DATABASE_URL`: URL de conexión a PostgreSQL
 - `USE_AI_DUMMY_MODE=true`: Usar respuestas simuladas de IA (desarrollo)
-- Ver [docs/ENV_CONFIG.md](docs/ENV_CONFIG.md) para detalles completos
+
 
 **3. Iniciar PostgreSQL** (si no está corriendo):
 
