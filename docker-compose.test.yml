@@ -1,0 +1,46 @@
+# Docker Compose configuration for running tests
+# Usage: docker compose -f docker-compose.test.yml up --abort-on-container-exit
+
+services:
+  postgres-test:
+    image: postgres:15-alpine
+    container_name: talent-test-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: talent_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - test-network
+    tmpfs:
+      # Use tmpfs for faster test execution (data in memory)
+      - /var/lib/postgresql/data
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: talent-test-runner
+    environment:
+      TEST_DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres-test:5432/talent_test
+      PYTHONPATH: /app
+    volumes:
+      - .:/app
+      - test-reports:/app/test-reports
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+    networks:
+      - test-network
+    command: ./scripts/run_tests.sh docker
+
+volumes:
+  test-reports:
+
+networks:
+  test-network:
+    driver: bridge

@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: talent-management-db
+    env_file: .env
+    environment:
+      POSTGRES_DB: talent_management
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - talent-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: talent-management-app
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/talent_management
+      DEBUG: "true"
+      ENVIRONMENT: development
+      RELOAD: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ./scripts/start.sh --reload
+    networks:
+      - talent-network
+
+
+volumes:
+  postgres_data:
+
+networks:
+  talent-network:
+    driver: bridge
