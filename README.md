@@ -23,7 +23,7 @@ API backend en **Python + FastAPI** para gestionar evaluaciones 360°, evaluacio
 
 ```bash
 git clone <repository-url>
-cd talent-management
+cd career-paths-api
 ```
 
 ### Paso 2: Elegir método de instalación
