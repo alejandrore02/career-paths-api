@@ -209,7 +209,8 @@ talent-management/
 
 Consultar [ARCHITECTURE.md](./docs/ARCHITECTURE.md) para más detalles sobre la arquitectura.
 Consultar [flows.md](./docs/flows.md) para más detalles sobre los flujos.
-COnsultar [planteamiento.md](./docs/planteamiento.md) para revisar preguntas iniciales para maquetar el proyecto.
+Consultar [planteamiento.md](./docs/planteamiento.md) para revisar preguntas iniciales para maquetar el proyecto.
+Consultar [discusion.md](./docs/discusion.md) para la discusión de la arquitectura.
 ## 🔌 API Endpoints Principales
 
 ### Health Checks
