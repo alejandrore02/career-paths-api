@@ -131,7 +131,7 @@ y puede extenderse en el futuro a un procesamiento automático por ciclo.
      ]
    }
 
-    ```
+  ```
 
 2. El router:
    - Valida el body contra el esquema Pydantic v2.
@@ -188,9 +188,7 @@ y puede extenderse en el futuro a un procesamiento automático por ciclo.
     }
     ```
 
-    El uso de errores no está harcodeado si no definido en un archivo constants para manejar los distintos status, errors y messages
-
-
+  El uso de errores no está harcodeado si no definido en un archivo constants para manejar los distintos status, errors y messages
 ---
 
 #### Paso 2 – Detección de ciclo completo para un usuario

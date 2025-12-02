@@ -134,9 +134,10 @@ talent-management/
 └── pyproject.toml
 ```
 
-Consulta [ARCHITECTURE.md](./ARCHITECTURE.md) para más detalles sobre la arquitectura.
-
-## 🔌 API Endpoints
+Consultar [ARCHITECTURE.md](./docs/ARCHITECTURE.md) para más detalles sobre la arquitectura.
+Consultar [flows.md](./docs/flows.md) para más detalles sobre los flujos.
+COnsultar [planteamiento.md](./docs/planteamiento.md) para revisar preguntas iniciales para maquetar el proyecto.
+## 🔌 API Endpoints Principales
 
 ### Health Checks
 
@@ -162,12 +163,13 @@ Consulta [ARCHITECTURE.md](./ARCHITECTURE.md) para más detalles sobre la arquit
 - `GET /api/v1/career-paths/{user_id}` - Listar paths del usuario
 - `GET /api/v1/career-paths/{path_id}/steps` - Detalle con pasos
 
-### Maestros (Roles, Skills, Users, Cycles)
+###  (Roles, Skills, Users, Cycles)
 
 - `GET/POST /api/v1/roles` - Gestión de roles
 - `GET/POST /api/v1/skills` - Gestión de habilidades
 - `GET/POST /api/v1/users` - Gestión de usuarios
 - `GET/POST /api/v1/evaluation-cycles` - Gestión de ciclos
+
 
 ## 🧪 Testing
 
@@ -207,3 +209,36 @@ alembic upgrade head
 # Revertir última migración
 alembic downgrade -1
 ```
+
+## 🧠 Modelos de IA utilizados
+
+Además de la arquitectura y el código, este repositorio incluye **instrucciones personalizadas para asistentes de IA** ubicadas en:
+
+```text
+.github/chatmodes/
+```
+
+### **1. Claude 4.5 — GitHub Edition**
+
+Utilizado para:
+
+- Implementación de arquitectura (capas, servicios, repositorios, UoW, clientes IA).
+- Estructuración de componentes del proyecto siguiendo patrones modernos (Clean Architecture, DDD-lite).
+- Propuestas de flujos de negocio, validación cruzada y consistencia entre módulos.
+- Revisión crítica de decisiones técnicas, organización del código y convenciones estructurales.
+- Generación de bases para documentos como `ARCHITECTURE.md` y `flows.md`.
+
+Este modelo sirvió como maquetador principal.
+
+---
+
+### **2. ChatGPT Mini 5 — OpenAI**
+
+Utilizado para:
+
+- Refinar las plantillas generadas por Claude y convertirlas en código funcional.
+- Crear boilerplate de archivos (`routers`, `services`, `repositories`, `schemas`, `integration clients`).
+- Generar documentación limpia y clara para desarrolladores (README, guías de testing, instructivos).
+- Maquetar scripts y automatización del flujo de desarrollo.
+- Unificar criterios, estilo de código e integraciones entre módulos.
+

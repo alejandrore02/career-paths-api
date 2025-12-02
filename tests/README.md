@@ -45,21 +45,6 @@ tests/
 ./scripts/run_tests.sh clean         # Limpiar artifacts
 ```
 
-## 🎯 Tests Específicos
-
-```bash
-# Archivo específico
-## Docker Environment
-
-`docker-compose.test.yml` provides:
-
-- Isolated PostgreSQL test database
-- pytest with coverage reporting
-- Fast execution (tmpfs storage)
-- CI/CD ready
-
 ## Docs
 
-- `docs/TESTING_GUIDE.md` - Complete testing guide
-- `tests/e2e/README.md` - E2E test details
 - `.github/copilot-instructions.md` - Testing patterns

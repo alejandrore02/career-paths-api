@@ -126,8 +126,6 @@ All config in `app/core/config.py` using `pydantic-settings`:
 - Access via `get_settings()` singleton
 - Critical vars: `DATABASE_URL`, `SECRET_KEY`, AI service URLs, circuit breaker thresholds
 
-See `docs/ENV_CONFIG.md` for environment-specific setup.
-
 ### Logging
 
 Structured logging via `app/core/logging.py`:
@@ -344,8 +342,6 @@ La variable `TEST_DATABASE_URL` en `conftest.py` se configura automáticamente:
 - **Services**: >85% (orchestration, error handling)
 - **Repositories**: >80% (CRUD operations)
 - **Endpoints**: >75% (happy path + error cases)
-
-See `docs/TESTING_GUIDE.md` for comprehensive testing documentation.
 
 ## When Adding New Features
 
