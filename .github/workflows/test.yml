@@ -69,7 +69,7 @@ jobs:
       env:
         ENVIRONMENT: test
         DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5432/talent_test
-        SECRET_KEY: test-secret-key
+        SECRET_KEY: test-secret-key-for-github-actions-minimum-32-characters-required
         AI_SKILLS_SERVICE_URL: http://localhost:8001
         AI_CAREER_SERVICE_URL: http://localhost:8002
       run: |
